@@ -2,7 +2,7 @@ name: GitHub Actions
 run-name: Pipeline 🚀
 on: [push]
 jobs:
-  check-build-production:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,9 +17,8 @@ jobs:
         run: npm ci
       - name: build project
         run: npm run build
-  check-linter:
+  linter:
     runs-on: ubuntu-latest
-    needs: check-build-production
     strategy:
       matrix:
         node-version: [17.x]
