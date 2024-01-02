@@ -1,8 +1,8 @@
 name: GitHub Actions
-run-name: pipeline 🚀
+run-name: Pipeline 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  check-build-production:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,3 +17,18 @@ jobs:
         run: npm ci
       - name: build project
         run: npm run build
+  check-linter:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Starting Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node-version}}
+      - name: install modules
+        run: npm ci
+      - name: lint project
+        run: npm run lint
