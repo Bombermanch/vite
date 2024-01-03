@@ -9,12 +9,19 @@ on:
       - '.github/workflows/*'
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [17.x]
+    runs-on: ${{matrix.node-version}}
     steps:
-      - uses: actions/checkout@v4
+      - name: Get repository code
+        uses: actions/checkout@v4
+      - name: Cache deps
+        uses:
+          actions/cache@v3
+          # with:
+          #   path: ~/.npm
+          #   key: node-modules-${{hashfiles('**/package-lock.json')}}
       - name: Starting Node.js ${{matrix.node-version}}
         uses: actions/setup-node@v4
         with:
