@@ -49,7 +49,7 @@ jobs:
         with:
           path: ~/.npm
           key: node-modules-${{hashfiles('**/package-lock.json')}}
-      - name: install modules
-        run: npm ci
+      # - name: install modules
+      #   run: npm ci
       - name: lint project
         run: npm run lint
