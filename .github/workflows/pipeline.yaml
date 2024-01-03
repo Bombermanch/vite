@@ -31,7 +31,6 @@ jobs:
       - name: build project
         run: npm run build
   linter:
-    needs: build
     strategy:
       matrix:
         node-version: [17.x]
@@ -49,7 +48,7 @@ jobs:
         with:
           path: ~/.npm
           key: node-modules-${{hashfiles('**/package-lock.json')}}
-      # - name: install modules
-      #   run: npm ci
+      - name: install modules
+        run: npm ci
       - name: lint project
         run: npm run lint
