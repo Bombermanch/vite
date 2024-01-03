@@ -31,7 +31,6 @@ jobs:
       - name: build project
         run: npm run build
   linter:
-    needs: build
     strategy:
       matrix:
         node-version: [17.x]
