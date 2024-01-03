@@ -2,6 +2,9 @@ name: GitHub Actions
 run-name: Pipeline 🚀
 on:
   pull_request:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
