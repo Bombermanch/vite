@@ -11,8 +11,9 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [17]
-    runs-on: ${{matrix.node-version}}
+        node-version: [17.x],
+        os: [ubuntu-latest]
+    runs-on: ${{matrix.os}}
     steps:
       - name: Get repository code
         uses: actions/checkout@v4
@@ -31,10 +32,11 @@ jobs:
       - name: build project
         run: npm run build
   linter:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [17.x],
+        os: [ubuntu-latest]
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v4
       - name: Starting Node.js ${{matrix.node-version}}
