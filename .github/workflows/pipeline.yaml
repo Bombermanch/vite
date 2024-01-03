@@ -13,6 +13,7 @@ jobs:
       matrix:
         node-version: [17.x]
         os: [ubuntu-latest]
+        command: [npm run build, npm run linter]
     runs-on: ${{matrix.os}}
     steps:
       - name: Get repository code
@@ -29,26 +30,4 @@ jobs:
       - name: install modules
         run: npm ci
       - name: build project
-        run: npm run build
-  linter:
-    strategy:
-      matrix:
-        node-version: [17.x]
-        os: [ubuntu-latest]
-    runs-on: ${{matrix.os}}
-    steps:
-      - name: Get repository code
-        uses: actions/checkout@v4
-      - name: Starting Node.js ${{matrix.node-version}}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{matrix.node-version}}
-      - name: Cache deps
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: node-modules-${{hashfiles('**/package-lock.json')}}
-      - name: install modules
-        run: npm ci
-      - name: lint project
-        run: npm run lint
+        run: ${{matrix.command}}
