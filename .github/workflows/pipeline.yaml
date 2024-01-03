@@ -2,7 +2,6 @@ name: GitHub Actions
 run-name: Pipeline 🚀
 on:
   pull_request:
-    types: [opened, reopened, edited]
 jobs:
   build:
     runs-on: ubuntu-latest
