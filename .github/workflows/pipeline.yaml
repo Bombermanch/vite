@@ -33,7 +33,7 @@ jobs:
   linter:
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [8, 10, 12, 14, 16, 18, 20]
         os: [ubuntu-latest]
     runs-on: ${{matrix.os}}
     steps:
