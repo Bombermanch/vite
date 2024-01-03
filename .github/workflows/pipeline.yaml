@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [17]
     runs-on: ${{matrix.node-version}}
     steps:
       - name: Get repository code
